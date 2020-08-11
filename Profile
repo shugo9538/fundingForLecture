@@ -1,0 +1,1 @@
+web: gunicorn FundForLectures.wsgi --log-file -
