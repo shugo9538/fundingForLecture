@@ -1,2 +1,3 @@
+release: python manage.py migrate
 web: gunicorn gettingstarted.wsgi --log-file -
-web: gunicorn FundForLecture:app --preload --max-requests 1200
+worker: python manage.py runworker channels --settings=FundForLectures.settings -v2
