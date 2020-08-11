@@ -136,8 +136,8 @@ STATICFILES_DIRS = (
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
-SOCIAL_AUTH_GOOGLE_PLUS_KEY = '100192715150-o7ganla1np2ei51g8h006dppubpsm948.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_PLUS_SECRET = 'BgVDY2lVINdTk5jQX7KLh5FB'
+SOCIAL_AUTH_GOOGLE_PLUS_KEY = ''
+SOCIAL_AUTH_GOOGLE_PLUS_SECRET = ''
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GooglePlusAuth',
 )
