@@ -81,11 +81,10 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'fundforlecture',
-        'host': 'mongodb+srv://fundforlecture:<password>@fundingforlecture.vu2dn.mongodb.net/<dbname>?retryWrites=true&w=majority',
-        'CONN_MAX_AGE': 500,
-        # mongodb+srv://fundforlecture:<password>@fundingforlecture.vu2dn.mongodb.net/<dbname>?retryWrites=true&w=majority
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
 }
 
