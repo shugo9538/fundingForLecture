@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse, Http404
 from social_core.exceptions import AuthAlreadyAssociated
+import requests
 
-# Create your views here.
+# Create your views here.her
 def google(request):
     return render(request, 'users/google.html')
 
