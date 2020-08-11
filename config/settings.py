@@ -12,9 +12,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+import django_heroku
+import os
 
+# Build paths inside the project like this: BASE_DIR / 'subdir'.
+# BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -49,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'config.urls'
@@ -79,8 +83,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'fundforlecture',
-        'host': 'localhost',
-        'port': 27017,
+        'host': 'mongodb+srv://fundforlecture:<password>@fundingforlecture.vu2dn.mongodb.net/<dbname>?retryWrites=true&w=majority',
+        'CONN_MAX_AGE': 500,
+        # mongodb+srv://fundforlecture:<password>@fundingforlecture.vu2dn.mongodb.net/<dbname>?retryWrites=true&w=majority
     }
 }
 
@@ -121,8 +126,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_GOOGLE_PLUS_KEY = '100192715150-o7ganla1np2ei51g8h006dppubpsm948.apps.googleusercontent.com'
@@ -177,3 +188,6 @@ SOCIAL_AUTH_PIPELINE = (
     'social_core.pipeline.user.user_details',
 )
 LOGIN_REDIRECT_URL = '/users/index'
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())
