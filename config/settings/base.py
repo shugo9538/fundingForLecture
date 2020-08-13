@@ -20,14 +20,14 @@ import os
 # BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Quick-start development settings - unsuitable for production
+# Quick-start development settings - unsuitable for production.txt
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
+# SECURITY WARNING: keep the secret key used in production.txt secret!
 # SECRET_KEY = 'bn99o8muvy12libso9j3xx!=mrv7dbwespig@c#q%((o$si(9r'
 SECRET_DIR = os.path.join(BASE_DIR, '.secrets')
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turned on in production.txt!
 # DEBUG = False
 #
 # ALLOWED_HOSTS = ['*']
