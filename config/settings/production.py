@@ -7,4 +7,4 @@ ALLOWED_HOSTS = ['*.herokuapp.com']
 
 WSGI_APPLICATION = 'config.wsgi.production.application'
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
