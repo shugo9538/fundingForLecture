@@ -145,8 +145,6 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-SESSION_ENGINE = 'mongo_sessions.session'
-
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_GOOGLE_PLUS_KEY = '100192715150-on4io8a2ll5ut9n91mr3bqstl6o85dt1.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_PLUS_SECRET = '4yQCN5fd1kX9Cmlt_ZmrbYHu'
