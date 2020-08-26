@@ -85,10 +85,8 @@ TEMPLATES = [
 
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'NAME': 'DB',
-        'HOST': 'mongodb+srv://fundforlecture:fundforlecture1234@fundingforlecture.vu2dn.mongodb.net/',
-        'PORT': 27017,
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
