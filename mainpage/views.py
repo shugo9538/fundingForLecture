@@ -6,4 +6,4 @@ def index(request):
     return render(request, template)
 
 def googlecheck(request):
-    return render(request, 'mainpage/googlecheck.html')
+    return render(request, 'mainpage/google9133cf5bbea3d62c.html')
