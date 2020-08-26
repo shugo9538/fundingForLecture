@@ -1,15 +1,24 @@
 from django.urls import path
+from django.views.decorators.csrf import csrf_exempt
 from . import views
 
 urlpatterns = [
     # users path
+    # 회원가입
+    path('join/', views.join, name='join'),
+    path('join/article', views.article, name='article'),
+    path('join/enrollment', views.enrollment, name='enrollment'),
+
     path('', views.users, name='users'),
     path('google/', views.google, name='google'),
+
+    # 로그인 창
     path('login/', views.Login.as_view(), name='login'),
-    # path('login/', views.login, name='login'),
-    path('logout/', views.logout, name='logout'),
-    path('join/', views.Login.as_view(), name='join'),
-    path('join/article/', views.join, name='article'),
-    path('join/student/', views.Login.as_view(), name='student'),
-    path('join/lecturer/', views.Login.as_view(), name='lecturer'),
+    path('logout/', views.Logout.as_view(), name='logout'),
+
+    # path('join/article/google', views.Login.as_view(), name='how'),
+    # path('join/article/inner', views.Login.as_view(), name='how'),
+
+    # using postman api checking
+    # path('login/', csrf_exempt(views.Login.as_view()), name='login'),
 ]

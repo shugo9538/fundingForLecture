@@ -1,0 +1,278 @@
+{% extends 'baseNoFooter.html' %}
+
+{% block title %}-enrollment{% endblock %}
+
+{% block scripts %}
+<!-- =======================================================
+  Theme Name: Flexor
+  Theme URL: https://bootstrapmade.com/flexor-free-multipurpose-bootstrap-template/
+  Author: BootstrapMade.com
+  Author URL: https://bootstrapmade.com
+======================================================= -->
+<!-- 글자수 세기 -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>글자수 세기</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script type="text/javascript">
+
+  $(document).ready(function(){
+    $( '#tregister' ).hide();
+      $("#teacher").click(function(){
+        $( '#tregister' ).show();
+        $( '#sregister' ).hide();
+      })
+
+    id = $('#id').val()
+    mbname = $('#mbname').val()
+    mbpw1 = $('#mbpw1').val()
+    mbpw_re1 = $('#mbpw_re1').val()
+    email = $('#email').val()
+    txt1 = $('#txt1').val()
+    txt2 = $('#txt2').val()
+
+    $("#conform").click(function(){
+        $.post("/users/join",
+        {
+            id : id,
+            mbname : mbname,
+            mbpw1 : mbpw1,
+            mbpw_re1 : mbpw_re1,
+            email : email,
+            txt1 : txt1,
+            txt2 : txt2
+        },
+        function(data, status){
+            alert("data : " + data + " \nStatus : " + status);
+        });
+    });
+    $( '#sregister' ).hide();
+      $("#student").click(function(){
+        $( '#sregister' ).show();
+        $( '#tregister' ).hide();
+      })
+
+    id = $('#id').val()
+    mbname = $('#mbname').val()
+    mbpw1 = $('#mbpw1').val()
+    mbpw_re1 = $('#mbpw_re1').val()
+    email = $('#email').val()
+});
+
+
+  <!-- 강사 비밀번호 일치 확인 -->
+  $(function(){
+    $('#mbpw1').keyup(function(){
+      $('#chkNotice').html('');
+    });
+
+    $('#mbpw_re1').keyup(function(){
+
+        if($('#mbpw1').val() != $('#mbpw_re1').val()){
+          $('#chkNotice').html('비밀번호 일치하지 않음<br><br>');
+          $('#chkNotice').attr('color', '#f82a2aa3');
+        } else{
+          $('#chkNotice').html('비밀번호 일치함<br><br>');
+          $('#chkNotice').attr('color', '#199894b3');
+        }
+
+    });
+});
+
+<!-- 수강생 비밀번호 일치 확인 -->
+$(function(){
+  $('#mbpw2').keyup(function(){
+    $('#chkNotice').html('');
+  });
+
+  $('#mbpw_re2').keyup(function(){
+
+      if($('#mbpw2').val() != $('#mbpw_re2').val()){
+        $('#chkNotice2').html('비밀번호 일치하지 않음<br><br>');
+        $('#chkNotice2').attr('color', '#f82a2aa3');
+      } else{
+        $('#chkNotice2').html('비밀번호 일치함<br><br>');
+        $('#chkNotice2').attr('color', '#199894b3');
+      }
+
+  });
+});
+
+   function counter(){
+    document.getElementById("counting1").innerHTML = document.getElementById("txt1").value.length;
+    document.getElementById("counting2").innerHTML = document.getElementById("txt2").value.length;
+   }
+
+</script>
+
+<script language="javascript">
+ function showConfirm() {
+ if (confirm("회원가입 하시겠습니까?"))
+  {
+   alert("회원가입 되었습니다.");
+   location.href='login.html';
+  } else {
+   alert("회원가입을 취소 하였습니다.");
+  }
+ }
+</script>
+{% endblock %}
+
+{% block content %}
+<!-- ======== @Region: #content ======== -->
+<div id="content">
+    <div class="container" id="about">
+        <div class="row">
+            <!--main content-->
+            <div class="col-md-9 col-md-push-1">
+                <div class="page-header">
+                    <h1>
+                        <h3>회원가입</h3>
+                    </h1>
+
+                    <input type=button id="student" style="WIDTH: 60pt; HEIGHT: 60pt" value="수강생">
+                    <input type=button id="teacher" style="WIDTH: 60pt; HEIGHT: 60pt" value="강사">
+
+                    <form id="sregister" name="sregister" action="{% url 'login' %}" method="post">
+                        <table width="940" style="padding:5px 0 5px 0; ">
+                            <tr height="2" bgcolor="#FFC8C3">
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <th>아이디</th>
+                                <td>
+                                    <input type="text" id="id" placeholder="영문 및 숫자 10자리 이하">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><br></th>
+                            </tr>
+                            <tr>
+                                <th> 닉네임</th>
+                                <td><input type="text" id="mbname" placeholder="8자리 이상"></td>
+                            </tr>
+                            <tr>
+                                <th><br></th>
+                            </tr>
+                            <tr>
+                                <th>비밀번호</th>
+                                <td><input type="password" id="mbpw2" placeholder="10자리 이하" maxlength="10"></td>
+                            </tr>
+                            <tr>
+                                <th>비밀번호 확인</th>
+                                <td><input type="password" id="mbpw_re2" placeholder="10자리 이하" maxlength="10"></td>
+                            </tr>
+                            <tr>
+                                <th><br><br></th>
+                                <td><font id="chkNotice2" size="2"></font></td>
+                            </tr>
+                            <tr>
+                                <th><br></th>
+                            </tr>
+                            <tr>
+                                <th>이메일</th>
+                                <td>
+                                    <input type='text' id="email" size="40" placeholder="ex) test@test.com">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><br></th>
+                            </tr>
+                            <tr height="2" bgcolor="#FFC8C3">
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="2" align="center"><br>
+                                    <input type=button id="conform" value="회원가입" onclick="showConfirm();">
+                                </td>
+                            </tr>
+                        </table>
+                        </td>
+                        </tr>
+                </form>
+
+                    <form id="tregister" name="tregister" action="{% url 'login' %}" method="post">
+                        <table width="940" style="padding:5px 0 5px 0; ">
+                            <tr height="2" bgcolor="#FFC8C3">
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                                <th>아이디</th>
+                                <td>
+                                    <input type="text" id="id" placeholder="영문 및 숫자 10자리 이하">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><br></th>
+                            </tr>
+                            <tr>
+                                <th> 닉네임</th>
+                                <td><input type="text" id="mbname" placeholder="8자리 이상"></td>
+                            </tr>
+                            <tr>
+                                <th><br></th>
+                            </tr>
+                            <tr>
+                                <th>비밀번호</th>
+                                <td><input type="password" id="mbpw1" placeholder="10자리 이하" maxlength="10"></td>
+                            </tr>
+                            <tr>
+                                <th>비밀번호 확인</th>
+                                <td><input type="password" id="mbpw_re1" placeholder="10자리 이하" maxlength="10"></td>
+                            </tr>
+                            <tr>
+                                <th><br><br></th>
+                                <td><font id="chkNotice" size="2"></font></td>
+                            </tr>
+                            <tr>
+                                <th><br></th>
+                            </tr>
+                            <tr>
+                                <th>이메일</th>
+                                <td>
+                                    <input type='text' id="email" size="40" placeholder="ex) test@test.com">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><br></th>
+                            </tr>
+                            <tr>
+                                <th>자기소개서<br> (최대 500자)</th>
+                                <td>
+                                    <textarea rows="10" cols="100" id="txt1" onkeyup="counter()"
+                                              maxlength="500"></textarea>
+                                    <br>
+                                    <span id="counting1">0</span>자 /500자
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><br></th>
+                            </tr>
+                            <tr>
+                                <th>경력서<br> (최대 500자)</th>
+                                <td>
+                                    <textarea rows="10" cols="100" id="txt2" onkeyup="counter()"
+                                              maxlength="500"></textarea>
+                                    <br>
+                                    <span id="counting2">0</span>자 /500자
+                                </td>
+                            </tr>
+                            <tr height="2" bgcolor="#FFC8C3">
+                                <td colspan="2"></td>
+                            </tr>
+                            <tr>
+                            <tr>
+                                <td colspan="2" align="center"><br>
+                                    <input type=button id="conform" value="회원가입" onclick="showConfirm();">
+                                </td>
+                            </tr>
+                            </tr>
+                        </table>
+                        </td>
+                        </tr>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

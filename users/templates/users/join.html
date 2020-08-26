@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<!--register0.html files renamed join.html-->
+{% extends 'baseNoFooter.html' %}
 
-</body>
-</html>
+{% block title %}-Article{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+<!-- ======== @Region: #content ======== -->
+<div id="content">
+    <div class="container" id="about">
+        <div class="row">
+            <!--main content-->
+            <div class="col-md-9 col-md-push-1">
+                <div class="page-header">
+                    <h3>회원가입</h3>
+                    <br><br><br>
+                    <div align="middle">
+                        <form method="get">
+                            <input type=submit
+                                   formaction="https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://127.0.0.1:8000/social/complete/google-plus/response_type=code&client_id=100192715150-o7ganla1np2ei51g8h006dppubpsm948.apps.googleusercontent.com"
+                                   style="WIDTH: 80pt; HEIGHT: 80pt" value="구글 회원가입">
+                            <input type=submit formaction="{% url 'article' %}"
+                                   style="width:80pt;height:80pt;" value="일반 회원가입">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

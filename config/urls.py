@@ -20,4 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('social/', include('social_django.urls')),
     path('users/', include('users.urls')),
+    path('mypage/', include('mypage.urls')),
+    path('', include('mainpage.urls'))
 ]
