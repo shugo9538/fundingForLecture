@@ -1,1 +1,1 @@
-web: gunicorn config.wsgi.production --log-file--tail -
+web: gunicorn config.wsgi.production --log-file -
