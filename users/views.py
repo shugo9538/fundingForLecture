@@ -14,10 +14,6 @@ from mainpage import urls
 # Create your views here.her
 userInfo = MongoConnection()
 
-# 유저 로그인 창
-def users(request):
-    return render(request, 'users/users.html')
-
 # 회원가입 버튼 동작 클래스로 바꿔야겠네
 def join(request):
     return render(request, 'users/join.html')
