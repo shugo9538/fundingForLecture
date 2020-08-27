@@ -131,8 +131,8 @@
             <div class="header-inner container">
                 <div class="row">
                     <div class="col-md-8">
-<!--                        navbar-branding/logo - hidden image tag & site name so things like Facebook to pick up, actual logo set via CSS for flexibility -->
-<!--                        <a class="navbar-brand" href="{% url 'index' %}" title="Home">-->
+                        <!--                        navbar-branding/logo - hidden image tag & site name so things like Facebook to pick up, actual logo set via CSS for flexibility -->
+                        <!--                        <a class="navbar-brand" href="{% url 'index' %}" title="Home">-->
                         <h1><a href="{% url 'index' %}">강의 펀딩</a></h1>
                         <h1 class="hidden"></h1>
                     </div>
@@ -147,8 +147,9 @@
 
                             {% if request.session.name != null %}
                             <li><h5><b>{{ request.session.name }}님 환영합니다</b></h5></li>
-                            <li class="user-login"><li class="fa fa-sign-in text-primary"></li>
-                                <a href="{% url 'logout' %}" methods="get" class="text-uppercase">로그아웃</a></li>
+                            <li class="user-login">
+                            <li class="fa fa-sign-in text-primary"></li>
+                            <a href="{% url 'logout' %}" methods="get" class="text-uppercase">로그아웃</a></li>
 
                             {% else %}
                             <li class="user-register"><i class="fa fa-edit text-primary "></i>
