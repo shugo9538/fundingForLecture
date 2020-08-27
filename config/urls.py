@@ -21,5 +21,7 @@ urlpatterns = [
     path('social/', include('social_django.urls')),
     path('users/', include('users.urls')),
     path('mypage/', include('mypage.urls')),
+    path('notice/', include('notice.urls')),
+    path('list', include('lecturelist.urls')),
     path('', include('mainpage.urls'))
 ]

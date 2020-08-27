@@ -1,0 +1,49 @@
+{% extends 'baseNoFooter.html' %}
+
+{% block title %}-Article{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+<!-- ======== @Region: #content ======== -->
+<div id="content">
+    <div class="container" id="about">
+        <div class="row">
+            <!--main content-->
+            <div class="col-md-9 col-md-push-3">
+                <div class="page-header">
+                    <h1>
+                        <h3>개설중인 강의목록</h3>
+                    </h1>
+                </div>
+                <div class="block block-border-bottom-grey block-pd-sm">
+                    <table border="1" width=90% height=30px>
+                        <tr align=center>
+                            <td width="200">강의명</td>
+                            <td width="150">강사</td>
+                            <td width="300">펀딩기간</td>
+                        </tr>
+                        <tr align=center>
+                            <td width="200"></td>
+                            <td width="150"></td>
+                            <td width="300"></td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+            <!-- sidebar -->
+            <div class="col-md-3 col-md-pull-9 sidebar visible-md-block visible-lg-block">
+                <h2>강의목록</h2>
+                <hr>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class=""><a href="{% url 'list_all' %}">전체 강의목록</a></li>
+                    <li class="active"><a href="{% url 'list_opening' %}">개설중인 강의목록</a></li>
+                    <li class=""><a href="{% url 'list_funding' %}">펀딩중인 강의목록</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

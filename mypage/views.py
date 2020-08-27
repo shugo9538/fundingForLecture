@@ -12,3 +12,6 @@ def lecturefunding(request):
 
 def student(request):
     return render(request, 'mypage/student.html')
+
+def teacher(request):
+    return render(request, 'mypage/teacher.html')

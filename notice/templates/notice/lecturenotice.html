@@ -1,0 +1,34 @@
+{% extends 'baseNoFooter.html' %}
+
+{% block title %}-Article{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+{% block content %}
+<!-- ======== @Region: #content ======== -->
+<div id="content">
+    <div class="container" id="about">
+        <div class="row">
+            <!--main content-->
+            <div class="col-md-9 col-md-push-3">
+                <div class="page-header">
+                    <h1>
+                        <h3>강의 공지</h3>
+                    </h1>
+                </div>
+                //////////////////////////////////
+
+            </div>
+            <!-- sidebar -->
+            <div class="col-md-2 col-md-pull-9 sidebar visible-md-block visible-lg-block">
+                <h2>공지사항</h2>
+                <ul class="nav nav-pills nav-stacked">
+                    <li class=""><a href="{% url 'system_notice' %}">시스템 공지</a></li>
+                    <li class="active"><a href="{% url 'lecture_notice' %}">강의 공지</a></li>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

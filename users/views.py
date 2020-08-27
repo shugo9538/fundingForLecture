@@ -2,15 +2,17 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, Http404, HttpResponseRedirect, JsonResponse
 from social_core.exceptions import AuthAlreadyAssociated
 # from .models import UserInfo #Mongo로 바꿀 예정
-from django.views.generic import View, RedirectView
+from django.views.generic import View, RedirectView, CreateView
 from django.contrib.auth.views import LogoutView, LoginView
 from django.urls import reverse
+
 
 from .models import MongoConnection
 
 from mainpage import urls
 
 # Create your views here.her
+userInfo = MongoConnection()
 
 # 유저 로그인 창
 def users(request):
@@ -25,6 +27,30 @@ def article(request):
 
 def enrollment(request):
     return render(request, 'users/enrollment.html')
+
+def create(request):
+    print(request.POST['chkbox'])
+    if request.POST['chkbox'] == True:
+        userType = 'student'
+        pm = None
+        career = None
+    else:
+        userType = 'teacher'
+        pm = request.POST.get('textarea1')
+        career = request.POST.get('textarea2')
+
+    createInfo = {
+        'id': request.POST['id'],
+        'nickname': request.POST['mbname'],
+        'pw': request.POST['mbpw1'],
+        'Email': request.POST['email'],
+        'type': userType,
+        'pm': pm,
+        'career': career,
+    }
+    userInfo.createUser(createInfo)
+
+    return redirect(reverse('index'))
 
 # 구글 계정 연동 추가 중
 def google(request):
@@ -49,28 +75,23 @@ class Login(LoginView):
         user_id = request.POST['id']
         user_pw = request.POST['password']
 
-        # 사용자 정보를 MongoDB 데이터와 비교
-        userInfo = MongoConnection()
-        userInfo.set(user_id)
-
         errorMsg = '로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요'
-        # responseInfo = None
 
-        # if userInfo.user_check() is errorMsg:
-        #     request.session['failed'] = '로그인에 실패했습니다. 아이디와 비밀번호를 확인해주세요'
-        # else:
-        #     responseInfo = userInfo.user_check()
-        #     del responseInfo['_id']
+        userInfo.set(user_id)
+        responseInfo = userInfo.userCheck()
 
-        responseInfo = userInfo.user_check()
         request.session['failed'] = None
 
         # 읽어온 사용자 정보와 일치하는지 확인
-        if user_id == responseInfo['id'] and user_pw == responseInfo['pw']:
-            request.session['name'] = responseInfo['id']
-            request.session['failed'] = 'not failed'
+        if responseInfo is not None:
+            if user_id == responseInfo['id'] and user_pw == responseInfo['pw']:
+                request.session['name'] = responseInfo['nickname']
+            else:
+                request.session['failed'] = errorMsg
+                return redirect(reverse('login'))
         else:
             request.session['failed'] = errorMsg
+            return redirect(reverse('login'))
 
         return redirect(reverse('index'))
 

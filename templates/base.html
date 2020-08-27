@@ -60,15 +60,6 @@
 <body class="page-index has-hero">
 <!--Change the background class to alter background image, options are: benches, boots, buildings, city, metro -->
 <div id="background-wrapper" class="buildings" data-stellar-background-ratio="0.1">
-    {% if request.session.failed == "not failed" %}
-    {% elif request.session.failed == null %}
-    {% else %}
-        <p class="navbar navbar-default" align="middle">
-            {% for msg in request.session.failed %}
-                {{ msg }}
-            {% endfor %}
-        </p>
-    {% endif %}
     <!-- ======== @Region: #navigation ======== -->
     <div id="navigation" class="wrapper">
         <!--Hidden Header Region-->
@@ -196,6 +187,7 @@
                 <!--everything within this div is collapsed on mobile-->
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav" id="main-menu">
+                        {% if request.session.name != null %}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">내 정보</a>
                             <!--class="caret"이 화살표 -->
@@ -207,12 +199,14 @@
                                 <li><a href="{% url 'student' %}" tabindex="-1" class="menu-item">Sign-Up</a></li>
                             </ul>
                         </li>
+                        {% else %}
+                        {% endif %}
                         <li class="dropdown dropdown-mm">
                             <a href="systemnotice.html" class="dropdown-toggle" data-toggle="dropdown">공지사항</a>
                             <!-- Dropdown Menu -->
                             <ul class="dropdown-menu">
-                                <li><a href="systemnotice.html" tabindex="-1" class="menu-item">시스템 공지</a></li>
-                                <li><a href="lecturenotice.html" tabindex="-1" class="menu-item">강의 공지</a></li>
+                                <li><a href="{% url 'system_notice' %}" tabindex="-1" class="menu-item">시스템 공지</a></li>
+                                <li><a href="{% url 'lecture_notice' %}" tabindex="-1" class="menu-item">강의 공지</a></li>
                             </ul>
                         </li>
                         <li class="dropdown dropdown-mm">
@@ -220,9 +214,9 @@
                             <!-- Dropdown Menu -->
                             <ul class="dropdown-menu">
                                 <li class="row">
-                                <li><a href="entirelist.html">전체 강의목록</a></li>
-                                <li><a href="openlist.html">개설된 강의목록</a></li>
-                                <li><a href="fundinglist.html">펀딩중인 강의목록</a></li>
+                                <li><a href="{% url 'list_all' %}">전체 강의목록</a></li>
+                                <li><a href="{% url 'list_opening' %}">개설된 강의목록</a></li>
+                                <li><a href="{% url 'list_funding' %}">펀딩중인 강의목록</a></li>
                                 </li>
                             </ul>
                         </li>
