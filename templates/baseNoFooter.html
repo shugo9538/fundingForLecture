@@ -57,73 +57,82 @@
     {% endblock %}
 </head>
 
-<!-- ======== @Region: body ======== -->
-
-<body class="page-about">
-  <!--Change the background class to alter background image, options are: benches, boots, buildings, city, metro -->
-  <div id="background-wrapper" class="buildings" data-stellar-background-ratio="0.8">
-
+<body class="page-index has-hero">
+<!--Change the background class to alter background image, options are: benches, boots, buildings, city, metro -->
+<div id="background-wrapper" class="buildings" data-stellar-background-ratio="0.1">
     <!-- ======== @Region: #navigation ======== -->
     <div id="navigation" class="wrapper">
-      <!--Hidden Header Region-->
-      <div class="header-hidden collapse">
-        <div class="header-hidden-inner container">
-          <div class="row">
-            <div class="col-md-3">
-              <h3>
-                About Us
-              </h3>
-              <p>Flexor is a super flexible responsive theme with a modest design touch.</p>
-              <a href="about.html" class="btn btn-more"><i class="fa fa-plus"></i> Learn more</a>
-            </div>
-            <div class="col-md-3">
-              <!--@todo: replace with company contact details-->
-              <h3>
-                Contact Us
-              </h3>
-              <address>
-                <strong>Flexor Bootstrap Theme Inc</strong>
-                <abbr title="Address"><i class="fa fa-pushpin"></i></abbr>
-                Sunshine House, Sunville. SUN12 8LU.
-                <br>
-                <abbr title="Phone"><i class="fa fa-phone"></i></abbr>
-                019223 8092344
-                <br>
-                <abbr title="Email"><i class="fa fa-envelope-alt"></i></abbr>
-                info@flexorinc.com
-              </address>
-            </div>
-            <div class="col-md-6">
-              <!--Colour & Background Switch for demo - @todo: remove in production-->
-              <h3>
-                Theme Variations
-              </h3>
-              <div class="switcher">
-                <div class="cols">
-                  Backgrounds:
-                  <br>
-                  <a href="#benches" class="background benches active" title="Benches">Benches</a> <a href="#boots" class="background boots " title="Boots">Boots</a> <a href="#buildings" class="background buildings " title="Buildings">Buildings</a>
-                  <a href="#city" class="background city " title="City">City</a> <a href="#metro" class="background metro " title="Metro">Metro</a>
+        <!--Hidden Header Region-->
+        <div class="header-hidden collapse">
+            <div class="header-hidden-inner container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h3>
+                            About Us
+                        </h3>
+                        <p>Flexor is a super flexible responsive theme with a modest design touch.</p>
+                        <a href="student.html" class="btn btn-more"><i class="fa fa-plus"></i> Learn more</a>
+                    </div>
+                    <div class="col-md-3">
+                        <!--@todo: replace with company contact details-->
+                        <h3>
+                            Contact Us
+                        </h3>
+                        <address>
+                            <strong>Flexor Bootstrap Theme Inc</strong>
+                            <abbr title="Address"><i class="fa fa-pushpin"></i></abbr>
+                            Sunshine House, Sunville. SUN12 8LU.
+                            <br>
+                            <abbr title="Phone"><i class="fa fa-phone"></i></abbr>
+                            019223 8092344
+                            <br>
+                            <abbr title="Email"><i class="fa fa-envelope-alt"></i></abbr>
+                            info@flexorinc.com
+                        </address>
+                    </div>
+                    <div class="col-md-6">
+                        <!--Colour & Background Switch for demo - @todo: remove in production-->
+                        <h3>
+                            Theme Variations
+                        </h3>
+                        <div class="switcher">
+                            <div class="cols">
+                                Backgrounds:
+                                <br>
+                                <a href="#benches" class="background benches active" title="Benches">Benches</a> <a
+                                    href="#boots" class="background boots " title="Boots">Boots</a> <a href="#buildings"
+                                                                                                       class="background buildings "
+                                                                                                       title="Buildings">Buildings</a>
+                                <a
+                                        href="#city" class="background city " title="City">City</a> <a href="#metro"
+                                                                                                       class="background metro "
+                                                                                                       title="Metro">Metro</a>
+                            </div>
+                            <div class="cols">
+                                Colours:
+                                <br>
+                                <a href="#orange" class="colour orange active" title="Orange">Orange</a> <a
+                                    href="#green" class="colour green " title="Green">Green</a> <a href="#blue"
+                                                                                                   class="colour blue "
+                                                                                                   title="Blue">Blue</a>
+                                <a href="#lavender" class="colour lavender "
+                                   title="Lavender">Lavender</a>
+                            </div>
+                        </div>
+                        <p>
+                            <small>Selection is not persistent.</small>
+                        </p>
+                    </div>
                 </div>
-                <div class="cols">
-                  Colours:
-                  <br>
-                  <a href="#orange" class="colour orange active" title="Orange">Orange</a> <a href="#green" class="colour green " title="Green">Green</a> <a href="#blue" class="colour blue " title="Blue">Blue</a> <a href="#lavender"
-                    class="colour lavender " title="Lavender">Lavender</a>
-                </div>
-              </div>
-              <p>
-                <small>Selection is not persistent.</small>
-              </p>
             </div>
-          </div>
         </div>
-      </div>
         <!--Header & navbar-branding region-->
         <div class="header">
             <div class="header-inner container">
                 <div class="row">
                     <div class="col-md-8">
+<!--                        navbar-branding/logo - hidden image tag & site name so things like Facebook to pick up, actual logo set via CSS for flexibility -->
+<!--                        <a class="navbar-brand" href="{% url 'index' %}" title="Home">-->
                         <h1><a href="{% url 'index' %}">강의 펀딩</a></h1>
                         <h1 class="hidden"></h1>
                     </div>
@@ -135,10 +144,19 @@
                                                        data-toggle="collapse" data-target=".header-hidden">Open</a></li>
                         </ul>
                         <ul class="list-inline user-menu pull-right">
+
+                            {% if request.session.name != null %}
+                            <li><h5><b>{{ request.session.name }}님 환영합니다</b></h5></li>
+                            <li class="user-login"><li class="fa fa-sign-in text-primary"></li>
+                                <a href="{% url 'logout' %}" methods="get" class="text-uppercase">로그아웃</a></li>
+
+                            {% else %}
                             <li class="user-register"><i class="fa fa-edit text-primary "></i>
-                                <a href="{% url 'join' %}" class="text-uppercase">회원가입</a></li>
+                                <a href="{% url 'join' %}" methods="get" class="text-uppercase">회원가입</a></li>
                             <li class="user-login"><i class="fa fa-sign-in text-primary"></i>
-                                <a href="{% url 'login' %}" methods="get" class="text-uppercase">로그인</a></li>
+                                <a href="{% url 'login' %}" methods="post" class="text-uppercase">로그인</a></li>
+
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -169,23 +187,26 @@
                 <!--everything within this div is collapsed on mobile-->
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav" id="main-menu">
+                        {% if request.session.name != null %}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">내 정보</a>
                             <!--class="caret"이 화살표 -->
                             <!-- Dropdown Menu -->
                             <ul class="dropdown-menu">
-                                <li><a href="correction.html" tabindex="-1" class="menu-item">내 정보 수정</a></li>
-                                <li><a href="student.html" tabindex="-1" class="menu-item">내 강의 관리</a></li>
-                                <li><a href="login.html" tabindex="-1" class="menu-item">Login</a></li>
-                                <li><a href="register.html" tabindex="-1" class="menu-item">Sign-Up</a></li>
+                                <li><a href="{% url 'edit' %}" tabindex="-1" class="menu-item">내 정보 수정</a></li>
+                                <li><a href="{% url 'withdrawal' %}" tabindex="-1" class="menu-item">내 강의 관리</a></li>
+                                <li><a href="{% url 'lecturefunding' %}" tabindex="-1" class="menu-item">Login</a></li>
+                                <li><a href="{% url 'student' %}" tabindex="-1" class="menu-item">Sign-Up</a></li>
                             </ul>
                         </li>
+                        {% else %}
+                        {% endif %}
                         <li class="dropdown dropdown-mm">
                             <a href="systemnotice.html" class="dropdown-toggle" data-toggle="dropdown">공지사항</a>
                             <!-- Dropdown Menu -->
                             <ul class="dropdown-menu">
-                                <li><a href="systemnotice.html" tabindex="-1" class="menu-item">시스템 공지</a></li>
-                                <li><a href="lecturenotice.html" tabindex="-1" class="menu-item">강의 공지</a></li>
+                                <li><a href="{% url 'system_notice' %}" tabindex="-1" class="menu-item">시스템 공지</a></li>
+                                <li><a href="{% url 'lecture_notice' %}" tabindex="-1" class="menu-item">강의 공지</a></li>
                             </ul>
                         </li>
                         <li class="dropdown dropdown-mm">
@@ -193,9 +214,9 @@
                             <!-- Dropdown Menu -->
                             <ul class="dropdown-menu">
                                 <li class="row">
-                                <li><a href="entirelist.html">전체 강의목록</a></li>
-                                <li><a href="openlist.html">개설된 강의목록</a></li>
-                                <li><a href="fundinglist.html">펀딩중인 강의목록</a></li>
+                                <li><a href="{% url 'list_all' %}">전체 강의목록</a></li>
+                                <li><a href="{% url 'list_opening' %}">개설된 강의목록</a></li>
+                                <li><a href="{% url 'list_funding' %}">펀딩중인 강의목록</a></li>
                                 </li>
                             </ul>
                         </li>
@@ -207,6 +228,8 @@
             </div>
         </div>
     </div>
+    {% block slidebar %}
+    {% endblock %}
 </div>
 
 <!-- ======== @Region: #content ======== -->
