@@ -49,9 +49,6 @@ def create(request):
     return redirect(reverse('index'))
 
 # 구글 계정 연동 추가 중
-def google(request):
-    return render(request, 'users/google.html')
-
 def auth_allowed(backend, uid, user=None, *args, **kwargs):
     print("backend >>", backend)
     print("uid >>", uid)
@@ -59,7 +56,7 @@ def auth_allowed(backend, uid, user=None, *args, **kwargs):
     print("args >>", args)
     print("kwargs >>", kwargs)
 
-    return HttpResponse("로그인 성공")
+    return redirect(reverse('index'))
 
 # 로그인 버튼 누르는 경우 동작
 class Login(LoginView):

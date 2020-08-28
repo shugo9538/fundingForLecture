@@ -19,7 +19,7 @@
                     <div align="middle">
                         <form method="get">
                             <input type=submit
-                                   formaction="https://accounts.google.com/o/oauth2/v2/auth?scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.metadata.readonly&include_granted_scopes=true&state=state_parameter_passthrough_value&redirect_uri=http://127.0.0.1:8000/social/complete/google-plus/response_type=code&client_id=100192715150-o7ganla1np2ei51g8h006dppubpsm948.apps.googleusercontent.com"
+                                   formaction="{% url 'social:begin' 'google-plus' %}"
                                    style="WIDTH: 80pt; HEIGHT: 80pt" value="구글 회원가입">
                             <input type=submit formaction="{% url 'article' %}"
                                    style="width:80pt;height:80pt;" value="일반 회원가입">

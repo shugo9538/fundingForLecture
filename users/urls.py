@@ -10,8 +10,6 @@ urlpatterns = [
     path('join/enrollment/', views.enrollment, name='enrollment'),
     path('join/enrollment/create', views.create, name='create'),
 
-    path('google/', views.google, name='google'),
-
     # 로그인 창
     path('login/', views.Login.as_view(), name='login'),
     path('logout/', views.Logout.as_view(), name='logout'),
