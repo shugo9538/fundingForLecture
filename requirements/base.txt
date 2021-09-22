@@ -1,4 +1,4 @@
-Django==3.0.5
+Django==3.1.13
 social-auth-app-django==4.0.0
 pymongo==3.11.0
 dnspython==1.16.0
